@@ -10,25 +10,14 @@
             Get the latest tech news delivered straight to your inbox.
             No spam, just the stories that matter.
         </p>
-        <button class="btn btn--primary hero__cta" id="subscribeBtn">
+        {# Här har vi bytt ut knappen mot en länk till din nya rutt #}
+        <a href="{{ url_for('public.subscribe') }}" class="btn btn--primary hero__cta">
             Subscribe Now
-        </button>
+        </a>
     </div>
 </section>
 
-<!-- Subscribe Modal -->
-<div class="modal-overlay" id="modalOverlay">
-    <div class="modal" role="dialog" aria-labelledby="modalTitle" aria-modal="true">
-        <div class="modal__header">
-            <h2 class="modal__title" id="modalTitle">Coming Soon!</h2>
-            <button class="modal__close" id="modalClose" aria-label="Close modal">&times;</button>
-        </div>
-        <div class="modal__body">
-            <p>We're working hard to bring you the best newsletter experience.</p>
-            <p style="margin-top: 1rem;">Check back soon to subscribe!</p>
-        </div>
-    </div>
-</div>
+{# Modal-koden är nu borttagen härifrån #}
 {% endblock %}
 
 {% block extra_css %}
@@ -68,10 +57,14 @@
     }
 
     .hero__cta {
+        display: inline-block; /* Säkerställer att länken ser ut som en knapp */
         font-size: 1.125rem;
         padding: 1rem 2.5rem;
         background-color: white;
-        color: var(--color-primary);
+        color: #2563eb; /* Matchar din primärfärg */
+        text-decoration: none;
+        border-radius: 0.5rem;
+        transition: all 0.2s;
     }
 
     .hero__cta:hover {
@@ -92,16 +85,4 @@
 </style>
 {% endblock %}
 
-{% block scripts %}
-<script>
-    const modal = document.getElementById('modalOverlay');
-    const btn = document.getElementById('subscribeBtn');
-    const close = document.getElementById('modalClose');
-
-    btn.onclick = () => modal.classList.add('active');
-    close.onclick = () => modal.classList.remove('active');
-    window.onclick = (event) => {
-        if (event.target == modal) modal.classList.remove('active');
-    }
-</script>
-{% endblock %}
+{# block scripts är nu borttaget eftersom JavaScriptet för modalen inte behövs #}
